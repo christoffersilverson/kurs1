@@ -1,9 +1,8 @@
 #!/bin/bash
 SEARCH_DIRECTORY=/usr/share/* # because magic strings are bad practice
 SEARCH_SIZE="1M"
-ARCHIVE_DIRECTORY=$HOME/arkiv
-
-
+ARCHIVE_DIRECTORY="$HOME/arkiv"
+date_today=$(date -d "now" +"%Y-%m-%d" )
 # Alternate way to map results into array, less robust
 
 #arr=( $(find $SEARCH_DIRECTORY -size +1M) )
@@ -36,14 +35,22 @@ while [[ ! "$userinput" = "y" && ! "$userinput" = "n" ]]; do
 	read -n1 userinput
 	printf "\n"
 done
-if [ "$userinput" = "n" ]; do
+if [[ "$userinput" = "n" ]]; then
 	exit
 fi
-if [ ! -d $ARCHIVE_DIRECTORY ]; do
+if [ ! -d $ARCHIVE_DIRECTORY ]; then
 	mkdir $ARCHIVE_DIRECTORY
 fi
 
-for $f in "${arr[@]}"
+if [ ! -f "$ARCHIVE_DIRECTORY/$date_today.zip" ]; then
+	zip "$ARCHIVE_DIRECTORY/$date_today.zip" anyfile
+	zip -d "$ARCHIVE_DIRECTORY/$date_today.zip" anyfile
+fi
+
+for f in "${arr[@]}"
 do
-	echo $f
+	zip -rv "$ARCHIVE_DIRECTORY/$date_today.zip" "$f"
 done
+
+echo "ARCHIVING SUCCESSFUL. EXITING SCRIPT"
+exit
