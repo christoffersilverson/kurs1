@@ -3,16 +3,14 @@ SEARCH_DIRECTORY=/usr/share/* # because magic strings are bad practice
 SEARCH_SIZE="1M"
 ARCHIVE_DIRECTORY="$HOME/arkiv"
 date_today=$(date -d "now" +"%Y-%m-%d" )
-# Alternate way to map results into array, less robust
 
+# Alternate way to map results into array, less robust
 #arr=( $(find $SEARCH_DIRECTORY -size +1M) )
 
-
 # map list of files with size above 1M to array
-
 mapfile -t arr < <(find $SEARCH_DIRECTORY -size +$SEARCH_SIZE)
+
 array_length=${#arr[@]}
-#echo $array_length
 if [ $array_length -ge 10000 ]; then
 	warn=10000
 elif [ $array_length -ge 1000 ]; then
@@ -35,9 +33,11 @@ while [[ ! "$userinput" = "y" && ! "$userinput" = "n" ]]; do
 	read -n1 userinput
 	printf "\n"
 done
+
 if [[ "$userinput" = "n" ]]; then
 	exit
 fi
+
 if [ ! -d $ARCHIVE_DIRECTORY ]; then
 	mkdir $ARCHIVE_DIRECTORY
 fi
