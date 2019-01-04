@@ -1,6 +1,7 @@
 #!/bin/bash
 SEARCH_DIRECTORY=/usr/share/* # because magic strings are bad practice
 SEARCH_SIZE="1M"
+ARCHIVE_DIRECTORY=$HOME/arkiv
 
 
 # Alternate way to map results into array, less robust
@@ -38,4 +39,11 @@ done
 if [ "$userinput" = "n" ]; do
 	exit
 fi
+if [ ! -d $ARCHIVE_DIRECTORY ]; do
+	mkdir $ARCHIVE_DIRECTORY
+fi
 
+for $f in "${arr[@]}"
+do
+	echo $f
+done
