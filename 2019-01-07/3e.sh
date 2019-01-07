@@ -1,13 +1,15 @@
 #!/bin/bash
-#set -x
+
 function isMagic() {
 	#loop over every num in the array
 	var=0
-	arr2=$1
+	arr2=("$@")
 	len="${#arr2[@]}"
-	echo len
+	#echo $len
+	#echo $arr2
 	for(( k = 0 ; k < $len ; k++ )); do
-		var=$((var+$1[$k]))
+		var=$((var+"$1[$k]"))
+		echo "var: $var"
 	done
 	if [ var == 7 ]; then
 		return 1
