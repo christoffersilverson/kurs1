@@ -4,12 +4,10 @@ function isMagic() {
 	#loop over every num in the array
 	var=0
 	arr2=("$@")
-	len="${#arr2[@]}"
-	#echo $len
-	#echo $arr2
-	for(( k = 0 ; k < $len ; k++ )); do
-		var=$((var+"$1[$k]"))
+	for j in "${arr2[@]}" ; do
 		echo "var: $var"
+		echo "j: $j"
+		#let "var=var+k"
 	done
 	if [ var == 7 ]; then
 		return 1
