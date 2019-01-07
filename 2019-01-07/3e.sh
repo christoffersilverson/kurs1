@@ -3,8 +3,9 @@
 function isMagic() {
 	#loop over every num in the array
 	var=0
-	arr2=("$@")
-	for j in "${arr2[@]}" ; do
+	arr2=("$*")
+	#echo $arr2
+	for j in "${arr2[*]}" ; do
 		echo "var: $var"
 		echo "j: $j"
 		#let "var=var+k"
@@ -20,5 +21,6 @@ function isMagic() {
 }
 for (( i=1000 ; i <= 10000; i++ )); do #loopa 1000 -> 10000
 	arr=$( echo $i | fold -w1 ) #konvertera till array
+	echo "arr: $arr"
 	isMagic "${arr[@]}" #is magic?
 done
