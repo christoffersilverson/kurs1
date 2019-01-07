@@ -9,11 +9,11 @@ function isMagic() {
 		return 1
 	elif [ ${#var} -gt 1 ]
 		var=$(cat $var | fold -w1)
-		isMagic "$[var[@]}"
+		isMagic "$[var[@]}" #rekursiv galenskap
 	fi
 }
-for ((i=1000 ; i <= 10000; i++)); do
-	arr=$(cat $i | fold -w1)
-	isMagic "${arr[@]}"
+for ((i=1000 ; i <= 10000; i++)); do #loopa 1000 -> 10000
+	arr=$(cat $i | fold -w1) #konvertera till array
+	isMagic "${arr[@]}" #is magic?
 done
 
