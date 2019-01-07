@@ -10,6 +10,8 @@ function isMagic() {
 	elif [ ${#var} -gt 1 ]
 		var=$(cat $var | fold -w1)
 		isMagic "$[var[@]}" #rekursiv galenskap
+	else
+		return 0
 	fi
 }
 for ((i=1000 ; i <= 10000; i++)); do #loopa 1000 -> 10000
