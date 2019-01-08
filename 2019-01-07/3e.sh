@@ -1,5 +1,4 @@
 #!/bin/bash
-#set -x
 function isMagic() {
 	#loop over every num in the array
 	var=0
@@ -9,7 +8,7 @@ function isMagic() {
 	done
 	if [ $var == "7" ]; then
 		return 0 #return success if magic number is found
-	elif [ ${#var} -gt 1 ]; then
+	elif [ ${#var} -gt 1 ]; then #if length of number(string) is above 1, ie: number is above 10
 		m=0
 		while [ $m -lt ${#var} ]; do n[$m]=${var:$m:1}; m=$((m+1));done #converts a string $var into array of characters
 		isMagic "${n[@]}" #call isMagic recursively
@@ -17,8 +16,8 @@ function isMagic() {
 		return 1 #return fail if number isnt magic
 	fi
 }
-for (( x=1000 ; x <= 10000; x++ )); do #loopa 1000 -> 10000
+for (( x=1000 ; x <= 10000; x++ )); do #loop 1000 -> 10000
 	l=0
 	while [ $l -lt ${#x} ]; do y[$l]=${x:$l:1};  l=$((l+1));done #converts a string $x in to array of characters
-	isMagic "${y[@]}" && echo "$x is magic!"
+	isMagic "${y[@]}" && echo "$x is magic!" #call function isMagic and echo $x on successful return
 done
