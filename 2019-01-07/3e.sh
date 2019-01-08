@@ -16,7 +16,7 @@ function isLucky() {
 		return 1 #return fail if number isnt lucky
 	fi
 }
-for (( x=1000 ; x <= 10000000; x++ )); do #loop 1000 -> 10000
+for (( x=1000 ; x <= 10000; x++ )); do #loop 1000 -> 10000
 	l=0
 	while [ $l -lt ${#x} ]; do y[$l]=${x:$l:1};  l=$((l+1));done #converts a string $x in to array of characters
 	isLucky "${y[@]}" && echo "$x is lucky!" #call function isLucky and echo $x on successful return
