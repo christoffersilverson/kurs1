@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mapfile -t arr < <(who | awk '{print $1}')
+mapfile -t arr < <(who | awk '{print $1}') #map list of users into array
 echo -n "Enter name to check: "
 read -e input
 matched=false
