@@ -13,6 +13,4 @@ if ($birthdate -lt $MillionHours){
 
 }
 
-((get-date)-$birthdate).TotalMinutes / 1000000 #antal minuter delat på en miljon
-
-(get-date)
+((get-date)-$birthdate).TotalMinutes / 1000000 #antal minuter delat pÃ¥ en miljon
