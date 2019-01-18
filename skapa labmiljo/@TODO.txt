@@ -1,5 +1,0 @@
-ideer:
-
-använd lability
-
-få den att automatiskt köra ps skript efter installation
